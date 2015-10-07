@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0" />
+    <title>Motion Sensor</title>
+
+    <script>
+
+    var xValue;
+    var yValue;
+    var zValue;
+    var counter = 0;
+
+    window.addEventListener("devicemotion", function(event1){
+        var x = event1.accelerationIncludingGravity.x;
+        var y = event1.accelerationIncludingGravity.y;
+        var z = event1.accelerationIncludingGravity.z;
+
+        x = Math.round(x * 10) / 10;
+        y = Math.round(y * 10) / 10;
+        z = Math.round(z * 10) / 10;
+
+        // xValue, yValue, zValueが空なら初期値として代入
+        if(typeof xValue === 'undefined'){
+            xValue = x;
+        }
+        if(typeof yValue === 'undefined'){
+            yValue = y;
+        }
+        if(typeof zValue === 'undefined'){
+            zValue = z;
+        }
+
+        if((Math.abs(xValue - x) > 2.5) || (Math.abs(yValue - y) > 2.5) || (Math.abs(zValue - z) > 2.5)){
+            counter++;
+        }
+
+        // Update the value
+        xValue = x;
+        yValue = y;
+        zValue = z;
+
+        var counterElements = document.getElementById("counter");
+        counterElements.innerHTML = counter;
+
+        var intervalElements = document.getElementById("interval");
+        intervalElements.innerHTML = event1.rotationRate;
+    }, true);
+
+
+    </script>
+</head>
+<body>
+    <p>Counter: <span id="counter">(None)</span></p>
+    <p>Interval: <span id="interval">(None)</span></p>
+</body>
+</html>

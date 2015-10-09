@@ -29,11 +29,12 @@ $(function() {
 
     setInterval(function() {
         $.post(
-        '/api',
-        { 'count': count },
-        function(response) {
-            count = response.yours;
-            $all_count.text(String(response.all));
-        })
+            '/api',
+            { 'count': count },
+            function(response) {
+                count = response.yours;
+                $all_count.text(String(response.all));
+            }
+        );
     }, 3000); // TODO: 負荷の見積もりに応じて適切な値に
 });

@@ -29,7 +29,7 @@ $(function() {
 
     setInterval(function() {
         $.post(
-            '/api',
+            '/api/client',
             { 'count': count },
             function(response) {
                 count = response.yours;

@@ -31,8 +31,8 @@ def index():
     return response
 
 
-@app.route('/api', methods=['POST'])
-def shake():
+@app.route('/api/client', methods=['POST'])
+def push_from_client():
     print(counts)
     user_id = request.cookies.get('uuid')
     if not user_id:

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+  <script src="{{ url_for('static', filename='info.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+  <p>All: <span id="all-count">{{ all_count }}</span></p>
+  <p>Users: <span id="n-users">{{ n_users }}</span></p>
+{% endblock %}

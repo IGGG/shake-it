@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0" />
-    <title>Motion Sensor</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script>
-      window.jQuery || document.write('<script src="{{ url_for('static', filename='jquery-1.11.3.min.js') }}">\/script>')
-    </script>
-    <script src="{{ url_for('static', filename='shake.js') }}"></script>
+{% extends 'base.html' %}
 
-</head>
-<body>
-    <p>Count: <span id="my-count">{{ my_count }}</span></p>
-    <p>All: <span id="all-count">{{ all_count }}</span></p>
-    <p>Interval: <span id="interval">(None)</span></p>
-</body>
-</html>
+{% block meta %}
+  <script src="{{ url_for('static', filename='shake.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+  <p>Count: <span id="my-count">{{ my_count }}</span></p>
+  <p>All: <span id="all-count">{{ all_count }}</span></p>
+  <p>Interval: <span id="interval">(None)</span></p>
+{% endblock %}

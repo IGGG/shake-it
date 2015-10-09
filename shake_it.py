@@ -31,6 +31,11 @@ def index():
     return response
 
 
+@app.route('/info')
+def info():
+    return render_template('info.html', n_users=len(counts), count=sum(counts.values()))
+
+
 @app.route('/api/client', methods=['POST'])
 def push_from_client():
     user_id = request.cookies.get('uuid')
@@ -39,6 +44,11 @@ def push_from_client():
 
     counts[user_id] = int(request.form['count'])
     return jsonify(yours=counts[user_id], all=sum(counts.values()))
+
+
+@app.route('/api/info')
+def main_data():
+    return jsonify(n_users=len(counts), count=sum(counts.values()))
 
 
 if __name__ == '__main__':

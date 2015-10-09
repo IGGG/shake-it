@@ -1,25 +1,27 @@
 $(function() {
-    var xValue = 0,
-        yValue = 0,
-        zValue = 0,
+    var THRESHOLD = 12.0,
+        old_values = { x: 0, y: 0, z: 0 },
         $my_count = $("#my-count"),
         $all_count = $("#all-count"),
         $interval = $("#interval"),
         count = Number($my_count.text());
 
-    window.addEventListener("devicemotion", function (event) {
-        var x = Math.round(event.acceleration.x * 10) / 10;
-        var y = Math.round(event.acceleration.y * 10) / 10;
-        var z = Math.round(event.acceleration.z * 10) / 10;
+    window.addEventListener("devicemotion", function(event) {
+        var values = {},
+            acceleration = event.acceleration;
 
-        if ((Math.abs(xValue - x) > 2.5) || (Math.abs(yValue - y) > 2.5) || (Math.abs(zValue - z) > 2.5)) {
+        Object.keys(acceleration).forEach(function(key) {
+            values[key] = Math.round(acceleration[key] * 10) / 10;
+        });
+
+        var isShaken = Object.keys(values).some(function(key) {
+            return Math.abs(values[key] - old_values[key]) > THRESHOLD;
+        });
+        if (isShaken)
             count++;
-        }
 
         // Update the value
-        xValue = x;
-        yValue = y;
-        zValue = z;
+        old_values = values;
 
         $my_count.text(String(count));
         $interval.text(event.interval);
@@ -28,7 +30,7 @@ $(function() {
     setInterval(function() {
         $.post(
         '/api',
-        {'count': count},
+        { 'count': count },
         function(response) {
             count = response.yours;
             $all_count.text(String(response.all));

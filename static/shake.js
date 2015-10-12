@@ -4,6 +4,9 @@ $(function() {
         $my_count = $("#my-count"),
         $all_count = $("#all-count"),
         $interval = $("#interval"),
+        $motion_x = $("#motion-x"),
+        $motion_y = $("#motion-y"),
+        $motion_z = $("#motion-z"),
         count = Number($my_count.text());
 
     window.addEventListener("devicemotion", function(event) {
@@ -25,6 +28,9 @@ $(function() {
 
         $my_count.text(String(count));
         $interval.text(event.interval);
+        $motion_x.text(values.x);
+        $motion_y.text(values.y);
+        $motion_z.text(values.z);
     }, true);
 
     setInterval(function() {

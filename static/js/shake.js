@@ -11,7 +11,7 @@ $(function() {
 
     window.addEventListener("devicemotion", function(event) {
         var values = {},
-            acceleration = event.acceleration;
+            acceleration = event.accelerationIncludingGravity;
 
         Object.keys(acceleration).forEach(function(key) {
             values[key] = Math.round(acceleration[key] * 10) / 10;

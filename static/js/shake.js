@@ -13,7 +13,7 @@ $(function() {
         var values = {},
             acceleration = event.accelerationIncludingGravity;
 
-        Object.keys(acceleration).forEach(function(key) {
+        ['x', 'y', 'z'].forEach(function(key) {
             values[key] = Math.round(acceleration[key] * 10) / 10;
         });
 

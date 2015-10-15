@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 
 {% block meta %}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+  <script>
+    window.jQuery || document.write('<script src="{{ url_for('static', filename='js/d3-3.5.6.min.js') }}">\/script>')
+  </script>
+
+  <script src="{{ url_for('static', filename='js/iopctrl.js') }}"></script>
   <script src="{{ url_for('static', filename='js/info.js') }}"></script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}">
 {% endblock %}
 
 {% block body %}
-  <p>All: <span id="all-count">{{ count }}</span></p>
-  <p>Users: <span id="n-users">{{ n_users }}</span></p>
+  <div>
+    <span id="equalizer"></span>
+  </div>
+
+  <span id="initial-value" style="color: #101010;">{{ count }}</span>
 {% endblock %}

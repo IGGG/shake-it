@@ -42,5 +42,5 @@ $(function() {
                 $all_count.text(String(response.all));
             }
         );
-    }, 3000); // TODO: 負荷の見積もりに応じて適切な値に
+    }, 1000); // TODO: 負荷の見積もりに応じて適切な値に
 });

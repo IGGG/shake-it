@@ -4,6 +4,20 @@ body {
   background-color: #101010;
 }
 
+h1 {
+  text-align: center;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 1200px;
+  height: 700px;
+}
+
 .unselectable {
   -moz-user-select: -moz-none;
   -khtml-user-select: none;

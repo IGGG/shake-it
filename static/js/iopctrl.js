@@ -87,7 +87,7 @@ iopctrl = function() {
     };
 
     iopctrl.ledarray = function() {
-        var width = 20, count = 20, padding = 3, vertical = true;
+        var width = 45, count = 20, padding = 3, vertical = true;
         var value;
         var scale = d3.scale.linear()
             .range([200, 0]);

@@ -1,14 +1,9 @@
 $(function() {
-    var svg = d3.select("#equalizer")
-        .append("svg:svg")
-        .attr("width",  1000) // 描画系　横の最大領域
-        .attr("height", 1000) // 描画系　縦の最大領域
-        .append("g")
-        .attr("transform", "translate(100, 100)")
-        .attr("class", "equalizer");
+    var svg = d3.select("g.equalizer")
+        .attr("transform", "translate(100, 100)");
 
     var leds = [];
-    var eq = svg.selectAll(".ledarray").data(d3.range(0, 500, 25)); // 第2引数 ピクセル 横幅
+    var eq = svg.selectAll(".ledarray").data(d3.range(0, 1000, 50)); // 第2引数 ピクセル 横幅
     eq.enter().append("g")
         .attr("class", "ledarray")
         .each(function(d, i) {
@@ -24,7 +19,7 @@ $(function() {
         var last_sum = Number($("#initial-value").text()),
             sums_of_interval = [];
 
-        for (var i = 0; i < leds[0].width(); i++)
+        for (var i = 0; i < leds.length; i++)
             sums_of_interval.push(0);
 
         return function() {

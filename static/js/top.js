@@ -1,10 +1,12 @@
 $(function() {
+    if (!('ondevicemotion' in window))
+        return;
+
     var THRESHOLD = 12.0,
         AXES = ['x', 'y', 'z'],
         old_values = { x: 0, y: 0, z: 0 },
-        $my_count = $("#my-count"),
-        $all_count = $("#all-count"),
-        count = Number($my_count.text());
+        $initial_count = $("#initial-count"),
+        count = Number($initial_count.text());
 
     window.addEventListener("devicemotion", function(event) {
         var values = {},
@@ -22,18 +24,13 @@ $(function() {
 
         // Update the value
         old_values = values;
-
-        $my_count.text(String(count));
     }, true);
 
     setInterval(function() {
         $.post(
             '/api/client',
             { 'count': count },
-            function(response) {
-                count = response.yours;
-                $all_count.text(String(response.all));
-            }
+            function(response) { count = response.count; }
         );
     }, 500);
 });

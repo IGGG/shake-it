@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-  <script src="{{ url_for('static', filename='js/shake.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/top.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/top.css') }}">
 {% endblock %}
 
 {% block body %}
-  <p>Count: <span id="my-count">{{ my_count }}</span></p>
-  <p>All: <span id="all-count">{{ all_count }}</span></p>
-  <p>Interval: <span id="interval">(None)</span></p>
-  <p>x: <span id="motion-x">(None)</span>, y: <span id="motion-y">(None)</span>, z: <span id="motion-z">(None)</span></p>
+  <img src="{{ url_for('static', filename='img/IGGG-logo.png') }}">
+
+  <span class="invisible" id="initial-count">{{ count }}</span>
 {% endblock %}

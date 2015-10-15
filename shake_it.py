@@ -19,8 +19,7 @@ def index():
 
     response = make_response(render_template(
         'top.html',
-        my_count=counts.get(user_id, 0),
-        all_count=sum(counts.values()),
+        count=counts.get(user_id, 0),
     ))
 
     if not user_id:
@@ -33,7 +32,7 @@ def index():
 
 @app.route('/info')
 def info():
-    return render_template('info.html', n_users=len(counts), count=sum(counts.values()))
+    return render_template('info.html', count=sum(counts.values()))
 
 
 @app.route('/api/client', methods=['POST'])
@@ -43,12 +42,12 @@ def push_from_client():
         return jsonify(message='uuid not set'), 404
 
     counts[user_id] = int(request.form['count'])
-    return jsonify(yours=counts[user_id], all=sum(counts.values()))
+    return '', 204
 
 
 @app.route('/api/info')
 def main_data():
-    return jsonify(n_users=len(counts), count=sum(counts.values()))
+    return jsonify(count=sum(counts.values()))
 
 
 if __name__ == '__main__':

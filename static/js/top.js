@@ -34,3 +34,19 @@ $(function() {
         );
     }, 500);
 });
+
+$(function() {
+    var $img = $("img");
+
+    window.addEventListener("deviceorientation", function(event) {
+        var beta = event.beta,
+            gamma = event.gamma,
+            alpha = event.alpha;
+
+        $img.css({
+            "-webkit-transform": "rotateX(" + (beta) + "deg) rotateY(" + (gamma) + "deg) rotateZ(" + alpha + "deg)",
+            "-moz-transform": "rotateX(" + (beta) + "deg) rotateY(" + (gamma) + "deg) rotateZ(" + alpha + "deg)",
+            "transform": "rotateX(" + (beta) + "deg) rotateY(" + (gamma) + "deg) rotateZ(" + alpha + "deg)"
+        });
+    });
+});

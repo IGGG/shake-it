@@ -1,19 +1,16 @@
 $(function() {
     var THRESHOLD = 12.0,
+        AXES = ['x', 'y', 'z'],
         old_values = { x: 0, y: 0, z: 0 },
         $my_count = $("#my-count"),
         $all_count = $("#all-count"),
-        $interval = $("#interval"),
-        $motion_x = $("#motion-x"),
-        $motion_y = $("#motion-y"),
-        $motion_z = $("#motion-z"),
         count = Number($my_count.text());
 
     window.addEventListener("devicemotion", function(event) {
         var values = {},
             acceleration = event.accelerationIncludingGravity;
 
-        ['x', 'y', 'z'].forEach(function(key) {
+        AXES.forEach(function(key) {
             values[key] = Math.round(acceleration[key] * 10) / 10;
         });
 
@@ -27,10 +24,6 @@ $(function() {
         old_values = values;
 
         $my_count.text(String(count));
-        $interval.text(event.interval);
-        $motion_x.text(values.x);
-        $motion_y.text(values.y);
-        $motion_z.text(values.z);
     }, true);
 
     setInterval(function() {
@@ -42,5 +35,5 @@ $(function() {
                 $all_count.text(String(response.all));
             }
         );
-    }, 1000); // TODO: 負荷の見積もりに応じて適切な値に
+    }, 500);
 });

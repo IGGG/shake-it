@@ -20,8 +20,7 @@ $(function() {
             leds.push(led);
         });
 
-
-    setInterval((function () {
+    var refresh = (function () {
         var last_sum = Number($("#initial-value").text()),
             sums_of_interval = [];
 
@@ -40,10 +39,14 @@ $(function() {
             );
 
             var max = Math.max.apply(null, sums_of_interval);
+            if (max == 0)
+                max = 1;
             var normalized = sums_of_interval.map(function(x) { return x / max });
 
             for (var i = 0; i < normalized.length; i++)
                 leds[i].value(normalized[i]);
         };
-    })(), 1000);
+    })();
+
+    setInterval(refresh, 500);
 });
